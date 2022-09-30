@@ -1,4 +1,4 @@
-<img src="./images/슬라이드1.jpg">
+<img src="./images/슬라이드1.JPG">
 <img src="./images/슬라이드2.jpg">
 <img src="./images/슬라이드3.jpg">
 <img src="./images/슬라이드4.jpg">
