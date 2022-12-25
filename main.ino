@@ -1,25 +1,7 @@
 #include <Arduino.h>
 
 #include <Servo.h>
-/* L9110s 모터드라이버
-  오른쪽모터
-  L9110s A_1A D6
-  L9110s A_1B D11
-  왼쪽모터
-  L9110s B_1A D3
-  L9110s B_1B D5
-  float getDistance() {
-  digitalWrite(echoPin, LOW);
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  // 거리값을 저장합니다.
-  float distance = pulseIn(echoPin, HIGH) / 29.0 / 2.0;
-  return distance;
-}
-*/
+
 
 #define irLeft analogRead(A0)
 #define irRight analogRead(A1)
@@ -30,8 +12,8 @@ int B_1A = 11;
 int B_1B = 12;
 /*
   초음파센서
-  초음파센서 TRIG - D8
-  초음파센서 ECHO - D9
+  초음파센서 TRIG - 7
+  초음파센서 ECHO - 6
 */
 int trigPin = 7;
 
@@ -41,8 +23,7 @@ long rightDistance = 0;
 int distance = 0;
 boolean object;
 /*
-  서보모터
-  서보모터 OUT - D10
+  서보모터8
 */
 int servoPin = 8;
 Servo servo;
@@ -247,13 +228,13 @@ void objectAvoid2() {
 
      if (getDistanceCM() < 30 ) {
 
-    //0.5초간 정지합니다.
+    
 
     stoop();
 
     delay(500);
 
-    // 서보모터를 좌회전하여 왼쪽 벽과의 거리를 변수에 저장합니다.
+    
 
     servo.write(145);
 
@@ -263,7 +244,7 @@ void objectAvoid2() {
 
     delay(500);
 
-    // 서보를 우회전하여 오른쪽 벽과의 거리를 변수에 저장합니다.
+    
 
     servo.write(45);
 
@@ -273,19 +254,19 @@ void objectAvoid2() {
 
     delay(500);
 
-    // 서보모터를 중앙으로 움직입니다.
+    
 
     servo.write(90);
 
     delay(1000);
 
-    // 0.3초간 후진합니다.
+    
 
     back();
 
     delay(500);
 
-    // 이전에 저장한 왼쪽거리가 오른쪽거리 보다 크다면 0.5초간 좌회전하며, 작다면 0.5초간 우회전합니다.
+    
 
     if (leftDistance > rightDistance) {
 
